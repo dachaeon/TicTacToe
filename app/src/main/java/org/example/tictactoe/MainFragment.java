@@ -3,6 +3,7 @@ package org.example.tictactoe;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +34,25 @@ public class MainFragment extends Fragment {
                 mDialog = builder.show();
             }
         });
+
+        View newButton = rootView.findViewById(R.id.new_button);
+        View continueButton = rootView.findViewById(R.id.continue_button);
+        newButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), GameActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
+        continueButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), GameActivity.class);
+                intent.putExtra(GameActivity.KEY_RESTORE, true);
+                getActivity().startActivity(intent);
+            }
+        });
+
 
         return rootView;
     }
